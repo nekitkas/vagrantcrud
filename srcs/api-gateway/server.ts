@@ -1,17 +1,23 @@
-import express from 'express';
+import express, {Express} from 'express';
 import morgan from 'morgan';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import moviesProxyMW from "./proxy";
 
-const app = express();
+dotenv.config();
 
+const app: Express = express();
+const port = process.env.PORT || 3001;
+
+app.use(express.json());
+app.use(cors());
 app.use(morgan('dev'));
-
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
+app.use(moviesProxyMW);
+app.use(express.urlencoded({ extended: true }));
 
 const start = async () => {
-    app.listen(3001, () => {
-        console.log('Server is running');
+    app.listen(port, () => {
+        console.log(`[server]: gateway is running at http://localhost:${port}`);
     });
 };
 
