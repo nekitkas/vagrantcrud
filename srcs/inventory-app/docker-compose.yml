@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+  server:
+    env_file:
+      - .env
+    build: .
+    restart: always
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - POSTGRES_HOST=db
+    depends_on:
+      - db
