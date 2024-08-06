@@ -2,10 +2,14 @@ version: "3.9"
 
 services:
   db:
+    env_file:
+      - .env
     image: postgres:latest
     restart: always
     ports:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
   server:
     env_file:
       - .env
