@@ -3,9 +3,12 @@ import { getApiConfig } from "./app/config/config";
 import { sequelizeConnection } from "./app/config/connection";
 import { rabbitMQConnection } from "./app/config/rabbitmq";
 import { Order } from './app/models/order';
+
 const app: Express = express();
 const port = getApiConfig().apiPort;
+
 sequelizeConnection.addModels([Order])
+
 app.get('/health', (req, res) => {
     res.status(200).send('Server is running');
 });

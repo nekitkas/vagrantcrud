@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config()
 
 interface ApiConfig {
     apiPort: string;
@@ -32,32 +32,32 @@ export const getApiConfig = (): ApiConfig => {
 }
 
 export const getPostgresConfig = (): PostgresConfig => {
-    if (!process.env.POSTGRES_NAME) {
+    if (!process.env.BILLING_DB_NAME) {
         throw new Error("POSTGRES_NAME is not defined");
     }
 
-    if (!process.env.POSTGRES_USER) {
+    if (!process.env.BILLING_DB_USER) {
         throw new Error("POSTGRES_USER is not defined");
     }
 
-    if (!process.env.POSTGRES_PASSWORD) {
+    if (!process.env.BILLING_DB_PASSWORD) {
         throw new Error("POSTGRES_PASSWORD is not defined");
     }
 
-    if (!process.env.POSTGRES_HOST) {
+    if (!process.env.BILLING_DB_HOST) {
         throw new Error("POSTGRES_HOST is not defined");
     }
 
-    if (!process.env.POSTGRES_PORT) {
+    if (!process.env.BILLING_DB_PORT) {
         throw new Error("POSTGRES_PORT is not defined");
     }
 
     return {
-        database: process.env.POSTGRES_NAME,
-        username: process.env.POSTGRES_USER,
-        password: process.env.POSTGRES_PASSWORD,
-        host: process.env.POSTGRES_HOST,
-        port: Number(process.env.POSTGRES_PORT)
+        database: process.env.BILLING_DB_NAME,
+        username: process.env.BILLING_DB_USER,
+        password: process.env.BILLING_DB_PASSWORD,
+        host: process.env.BILLING_DB_HOST,
+        port: Number(process.env.BILLING_DB_PORT)
     }
 }
 

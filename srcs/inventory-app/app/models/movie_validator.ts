@@ -1,4 +1,4 @@
-import { body, query } from "express-validator";
+import {body, check } from "express-validator";
 
 export const movieValidator = [
     body('title').isString().notEmpty(),
@@ -6,5 +6,5 @@ export const movieValidator = [
 ]
 
 export const movieTitleQueryValidator = [
-    query('title').isString().notEmpty()
+    check('title').optional().isString()
 ]

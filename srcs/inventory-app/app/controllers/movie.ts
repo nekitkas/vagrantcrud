@@ -24,30 +24,27 @@ const addMovie = async (req: MovieBody, res: Response) => {
 const getMovies = async (req: MovieQuery, res: Response) => {
     const result = validationResult(req);
     if (!result.isEmpty()) {
-        const movies = await Movie.findAll()
-        res.json(movies)
-        return;
-    } else {
-        const { title } = req.query;
-        if (!title) {
-            res.status(400).json({ message: 'Title is required' });
-            return;
-        }
-
-        const movies = await Movie.findAll({ where: { title } });
-
-        if (movies.length === 0) {
-            res.status(404).json({ message: 'Movie not found' });
-            return;
-        }
-
-        res.json(movies);
+        return res.status(400).json({ errors: result.mapped() });
     }
 
-    const movies = await Movie.findAll()
+    const { title } = req.query;
 
-    res.json(movies)
-}
+    try {
+        let movies;
+
+        if (title) {
+            movies = await Movie.findAll({ where: { title } });
+            if (movies.length === 0) {
+                return res.status(404).json({ message: 'Movie not found' });
+            }
+        } else {
+            movies = await Movie.findAll();
+        }
+        res.json(movies);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error });
+    }
+};
 
 const getMovieById = async (req: MovieParams, res: Response) => {
     const result = validationResult(req);

@@ -1,11 +1,18 @@
-import {Router, Request, Response, NextFunction} from 'express';
-import dotenv from 'dotenv';
+import { Router, Request, Response } from 'express';
+import { sendToBillingQueue } from "./rabbitPublisher";
 import moviesProxyMW from "./proxy";
-
-dotenv.config();
 
 const router = Router();
 
-router.use('/api/movies', moviesProxyMW);
+router.post('/api/billing', async (req: Request, res: Response) => {
+    try {
+        await sendToBillingQueue(req.body);
+        res.status(200).send('Message sent to queue');
+    } catch (error) {
+        res.status(500).send('Failed to send message to queue');
+    }
+});
+
+router.all('/api/movies*', moviesProxyMW);
 
 export default router;
