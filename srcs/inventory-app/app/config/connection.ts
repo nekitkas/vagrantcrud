@@ -4,11 +4,11 @@ import dotenv from 'dotenv';
 dotenv.config()
 
 export const sequelizeConnection = new Sequelize({
-    logging: false,
-    database: process.env.POSTGRES_NAME,
+    logging: true,
+    database: process.env.INVENTORY_DB_NAME,
     dialect: 'postgres',
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    host: process.env.POSTGRES_HOST,
-    port: Number(process.env.POSTGRES_PORT)
+    username: process.env.INVENTORY_DB_USER,
+    password: process.env.INVENTORY_DB_PASSWORD,
+    host: process.env.INVENTORY_DB_HOST,
+    port: Number(process.env.INVENTORY_DB_PORT)
 });

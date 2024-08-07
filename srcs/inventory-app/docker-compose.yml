@@ -7,16 +7,21 @@ services:
     image: postgres:latest
     restart: always
     ports:
-      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+      - "${INVENTORY_DB_PORT}:5432"
     volumes:
       - ./data/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${INVENTORY_DB_USER}
+      POSTGRES_PASSWORD: ${INVENTORY_DB_PASSWORD}
+      POSTGRES_DB: ${INVENTORY_DB_NAME}
+      POSTGRES_HOST: ${INVENTORY_DB_HOST}
   server:
     env_file:
       - .env
     build: .
     restart: always
     ports:
-      - "${PORT}:${PORT}"
+      - "${INVENTORY_APP_PORT}:${INVENTORY_APP_PORT}"
     environment:
       - POSTGRES_HOST=db
     depends_on:
