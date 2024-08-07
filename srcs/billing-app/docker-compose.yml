@@ -7,7 +7,7 @@ services:
     image: postgres:latest
     restart: always
     ports:
-      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+      - "${POSTGRES_PORT}:5432"
     volumes:
       - ./data/db:/var/lib/postgresql/data
   server:
@@ -16,8 +16,23 @@ services:
     build: .
     restart: always
     ports:
-      - "${PORT}:${PORT}"
+      - "${BILLING_APP_PORT}:${BILLING_APP_PORT}"
     environment:
       - POSTGRES_HOST=db
     depends_on:
       - db
+  rabbitmq:
+    env_file:
+      - .env
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/mnesia
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
