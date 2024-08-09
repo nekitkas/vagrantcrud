@@ -1,14 +1,16 @@
 import {Sequelize} from 'sequelize-typescript';
-import { getPostgresConfig } from "./config";
+import { postgresConfig } from "./config";
 
-const dbConfig = getPostgresConfig();
+const config = postgresConfig();
+
+console.log(config)
 
 export const sequelizeConnection = new Sequelize({
     logging: false,
     dialect: 'postgres',
-    database: dbConfig.database,
-    username: dbConfig.username,
-    password: dbConfig.password,
-    host: dbConfig.host,
-    port: dbConfig.port,
+    database: config.database,
+    username: config.username,
+    password: config.password,
+    host: config.host,
+    port: config.port,
 })

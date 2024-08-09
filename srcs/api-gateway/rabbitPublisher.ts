@@ -1,8 +1,10 @@
 import client, { Connection, Channel } from "amqplib";
 
-import { getRabbitMQConfig } from "./config";
+import { rabbitMQConfig } from "./config";
 
-const { host, username, password, port } = getRabbitMQConfig();
+const { host, username, password, port } = rabbitMQConfig();
+
+console.log(rabbitMQConfig());
 
 let channel: Channel;
 

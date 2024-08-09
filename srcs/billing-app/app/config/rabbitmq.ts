@@ -1,8 +1,8 @@
 import client, { Connection, Channel, ConsumeMessage } from "amqplib";
-import { getRabbitMQConfig } from "./config";
+import { rabbitmqConfig } from "./config";
 import { Order} from '../models/order'
 
-const { host, username, password, port } = getRabbitMQConfig();
+const { host, username, password, port } = rabbitmqConfig();
 
 export const rabbitMQConnection = async () => {
     try {
