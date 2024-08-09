@@ -17,7 +17,7 @@ const rabbitMQConnection = async () => {
 
         await channel.assertQueue('BILLING_QUEUE', { durable: true });
 
-        console.log(`[RabbitMQ]: waiting for messages in INVENTORY_QUEUE`);
+        console.log(`[RabbitMQ]: waiting for messages in BILLING_QUEUE`);
     } catch (error) {
         console.error(`[RabbitMQ]: failed to connect to RabbitMQ. ${error}`);
     }

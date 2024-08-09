@@ -6,6 +6,6 @@ router.get('/health', (req, res) => {
     res.status(200).send('[Billing-service] Health check passed!');
 });
 
-router.get('/orders', getOrders);
+router.get('/billing', getOrders);
 
 export default router;

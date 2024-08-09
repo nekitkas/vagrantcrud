@@ -7,6 +7,8 @@ const billing_post = process.env.BILLING_APP_PORT;
 
 console.log(`[API-GATEWAY]: inventory app host: ${inventory_host}`);
 console.log(`[API-GATEWAY]: inventory app port: ${inventory_post}`);
+console.log(`[API-GATEWAY]: billing app host: ${billing_host}`);
+console.log(`[API-GATEWAY]: billing app port: ${billing_post}`);
 
 export const moviesProxyMW = createProxyMiddleware({
     target: `http://${inventory_host}:${inventory_post}`,
@@ -26,7 +28,7 @@ export const ordersProxyMW = createProxyMiddleware({
     changeOrigin: true,
     ejectPlugins: true,
     pathRewrite: {
-        '^/api/orders': '/orders',
+        '^/api/billing': '/billing',
     },
     on: {
         proxyReq: fixRequestBody

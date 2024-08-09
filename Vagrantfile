@@ -147,6 +147,7 @@ Vagrant.configure("2") do |config|
   config.vm.define gateway_vm do |gateway_vm|
     gateway_vm.vm.hostname = gateway_vm_hostname
     gateway_vm.vm.network "private_network", ip: gateway_vm_addr, hostname: true
+    gateway_vm.vm.network "forwarded_port", guest: API_GATEWAY_PORT, host: API_GATEWAY_PORT
     gateway_vm.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
