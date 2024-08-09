@@ -30,12 +30,12 @@ export const rabbitMQConfig = (): RabbitMQConfig => {
 }
 
 export const gatewayConfig = (): GatewayConfig => {
-    if (!process.env.APP_PORT) {
+    if (!process.env.API_GATEWAY_PORT) {
         throw new Error("GATEWAY_PORT is not defined");
     }
 
     return {
-        port: Number(process.env.APP_PORT),
-        host: process.env.APP_HOST || 'localhost',
+        port: Number(process.env.API_GATEWAY_PORT),
+        host: process.env.API_GATEWAY_HOST || 'localhost',
     }
 }

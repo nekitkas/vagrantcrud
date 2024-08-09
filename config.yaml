@@ -3,9 +3,9 @@ configs:
   use: 'testing'
   testing:
     # virtual machines ip addresses
-    billing_vm_addr: 192.168.33.12
-    inventory_vm_addr: 192.168.33.11
-    gateway_vm_addr: 192.168.33.10
+    billing_vm_addr: 192.168.56.30
+    inventory_vm_addr: 192.168.56.20
+    gateway_vm_addr: 192.168.56.10
     # virtual machines resources
     billing_vm_cpu: 1
     inventory_vm_cpu: 1
