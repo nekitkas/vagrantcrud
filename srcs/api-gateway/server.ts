@@ -3,11 +3,12 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import router from './routes'
-
-dotenv.config();
+import { gatewayConfig } from './config';
 
 const app: Express = express();
-const port = process.env.API_GATEWAY_PORT
+const { port, host } = gatewayConfig();
+
+console.log(gatewayConfig());
 
 app.use(express.json());
 app.use(cors());
@@ -16,8 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(router)
 
 const start = async () => {
-    app.listen(port, () => {
-        console.log(`[GATEWAY]: gateway is running at http://localhost:${port}`);
+    app.listen(Number(port), host,() => {
+        console.log(`[GATEWAY]: gateway is running at http://${host}:${port}`);
     });
 };
 

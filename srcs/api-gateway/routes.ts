@@ -4,6 +4,10 @@ import moviesProxyMW from "./proxy";
 
 const router = Router();
 
+router.get('/api/health', (req: Request, res: Response) => {
+    res.status(200).send('[GATEWAY] Gateway is up and running!');
+});
+
 router.post('/api/billing', async (req: Request, res: Response) => {
     try {
         await sendToBillingQueue(req.body);

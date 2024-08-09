@@ -1,14 +1,14 @@
 import { Sequelize } from 'sequelize-typescript';
-import dotenv from 'dotenv';
+import { dbConfig } from "./config";
 
-dotenv.config()
+const config = dbConfig();
 
 export const sequelizeConnection = new Sequelize({
     logging: true,
-    database: process.env.INVENTORY_DB_NAME,
+    database: config.database,
     dialect: 'postgres',
-    username: process.env.INVENTORY_DB_USER,
-    password: process.env.INVENTORY_DB_PASSWORD,
-    host: process.env.INVENTORY_DB_HOST,
-    port: Number(process.env.INVENTORY_DB_PORT)
+    username: config.username,
+    password: config.password,
+    host: config.db_host,
+    port: config.db_port,
 });
