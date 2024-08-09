@@ -33,7 +33,7 @@ export const dbConfig = (): DBConfig => {
 
 export const serviceConfig = (): InventoryServiceConfig => {
     return {
-        host: process.env.INVENTORY_HOST || 'localhost',
-        port: Number(process.env.INVENTORY_PORT) || 3000
+        host: process.env.INVENTORY_APP_HOST || 'localhost',
+        port: Number(process.env.INVENTORY_APP_PORT) || 3000
     }
 }

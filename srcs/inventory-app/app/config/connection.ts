@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { dbConfig } from "./config";
 
 const config = dbConfig();
-
+console.log(config);
 export const sequelizeConnection = new Sequelize({
     logging: true,
     database: config.database,

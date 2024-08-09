@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { sendToBillingQueue } from "./rabbitPublisher";
-import moviesProxyMW from "./proxy";
+import { moviesProxyMW, ordersProxyMW }from "./proxy";
 
 const router = Router();
 
@@ -17,6 +17,7 @@ router.post('/api/billing', async (req: Request, res: Response) => {
     }
 });
 
-router.all('/api/movies*', moviesProxyMW);
+router.all('/api/movies', moviesProxyMW);
+router.get('/api/billing', ordersProxyMW);
 
 export default router;

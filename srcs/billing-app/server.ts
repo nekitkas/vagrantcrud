@@ -3,15 +3,14 @@ import { serviceConfig } from "./app/config/config";
 import { sequelizeConnection } from "./app/config/connection";
 import { rabbitMQConnection } from "./app/config/rabbitmq";
 import { Order } from './app/models/order';
+import router from './app/routes/orders';
 
 const app: Express = express();
 const { port, host } = serviceConfig();
 
 sequelizeConnection.addModels([Order])
 
-app.get('/health', (req, res) => {
-    res.status(200).send('[Billing-service] Health check passed!');
-});
+app.use(router);
 
 const start = async (): Promise<void> => {
     try{
@@ -20,7 +19,7 @@ const start = async (): Promise<void> => {
             force: true
         });
         await rabbitMQConnection();
-        app.listen(Number(port), host, () => {
+        app.listen(Number(port), () => {
             console.log(`[Billing-service]: server is running at http://${host}:${port}`);
         });
     } catch (error) {

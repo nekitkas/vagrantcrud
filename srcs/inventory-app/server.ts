@@ -23,7 +23,7 @@ const start = async (): Promise<void> => {
     try {
         await sequelizeConnection.authenticate();
         await sequelizeConnection.sync();
-        app.listen(config.port, config.host,() => {
+        app.listen(config.port,() => {
             console.log(`[Inventory-service]: server is running at http://${config.host}:${config.port}`);
         });
     } catch (error) {
