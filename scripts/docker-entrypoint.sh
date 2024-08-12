@@ -16,5 +16,8 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
     su-exec postgres pg_ctl -D "$PGDATA" stop
 fi
 
+echo "listen_addresses = '*'" >> "$PGDATA/postgresql.conf"
+echo "host    all             $POSTGRES_USER    0.0.0.0/0            md5" >> "$PGDATA/pg_hba.conf"
+
 # Start PostgreSQL server
 exec su-exec postgres "$@"

@@ -3,15 +3,15 @@ FROM alpine:3.20
 
 RUN apk update && \
     apk add --no-cache \
-    postgresql14 \
-    postgresql14-contrib \
+    postgresql \
+    postgresql-contrib \
     su-exec \
     tzdata && \
-    mkdir -p /var/lib/postgresql/data /run/postgresql && \
-    chown -R postgres:postgres /var/lib/postgresql /run/postgresql
+    mkdir -p /var/lib/pgsql/16/data /run/postgresql && \
+    chown -R postgres:postgres /var/lib/pgsql /run/postgresql
 
 # Set the data directory environment variable
-ENV PGDATA /var/lib/postgresql/data
+ENV PGDATA /var/lib/pgsql/16/data
 
 # Expose PostgreSQL port
 EXPOSE 5432
