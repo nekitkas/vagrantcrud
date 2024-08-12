@@ -4,12 +4,14 @@ import { sequelizeConnection } from "./app/config/connection";
 import { rabbitMQConnection } from "./app/config/rabbitmq";
 import { Order } from './app/models/order';
 import router from './app/routes/orders';
+import morgan from "morgan";
 
 const app: Express = express();
 const { port, host } = serviceConfig();
 
 sequelizeConnection.addModels([Order])
 
+app.use(morgan('dev'));
 app.use(router);
 
 const start = async (): Promise<void> => {
