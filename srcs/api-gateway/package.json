@@ -5,7 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "build": "npx tsc",
-    "start": "ts-node dist/server.js",
+    "start": "node dist/server.js",
     "dev": "nodemon server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,6 +26,7 @@
     "@types/chalk": "^2.2.0",
     "@types/http-proxy": "^1.17.14",
     "@types/morgan": "^1.9.9",
+    "@types/swagger-ui-express": "^4.1.6",
     "amqplib": "^0.10.4",
     "chalk": "^5.3.0",
     "concurrently": "^8.2.2",
@@ -36,6 +37,8 @@
     "http-proxy-middleware": "^3.0.0",
     "morgan": "^1.10.0",
     "npx": "^10.2.2",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
   }
 }
