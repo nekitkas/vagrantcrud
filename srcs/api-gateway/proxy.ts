@@ -1,5 +1,4 @@
 import { createProxyMiddleware, fixRequestBody, debugProxyErrorsPlugin, loggerPlugin, errorResponsePlugin, proxyEventsPlugin } from 'http-proxy-middleware';
-
 const inventory_host = process.env.INVENTORY_APP_HOST;
 const inventory_post = process.env.INVENTORY_APP_PORT;
 const billing_host = process.env.BILLING_APP_HOST;

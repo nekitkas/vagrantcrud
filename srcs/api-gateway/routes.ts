@@ -34,9 +34,10 @@ router.post('/api/billing', async (req: Request, res: Response) => {
 });
 
 router.all('/api/movies', moviesProxyMW);
+router.all('/api/movies/:id', moviesProxyMW);
 router.get('/api/billing', ordersProxyMW, async (req: Request, res: Response) => {
     /*  #swagger.auto = false
-    
+
         #swagger.tags = ['Billing']
         #swagger.path = '/billing'
         #swagger.method = 'get'

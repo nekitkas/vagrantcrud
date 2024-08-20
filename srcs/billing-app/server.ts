@@ -1,4 +1,5 @@
 import express, {Express} from 'express';
+import { Request, Response } from 'express';
 import { serviceConfig } from "./app/config/config";
 import { sequelizeConnection } from "./app/config/connection";
 import { rabbitMQConnection } from "./app/config/rabbitmq";
