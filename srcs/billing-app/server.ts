@@ -11,6 +11,10 @@ const { port, host } = serviceConfig();
 
 sequelizeConnection.addModels([Order])
 
+app.get('/health', (req: Request, res: Response) => {
+    res.status(200).send('[Billing-service] Health check passed!');
+});
+
 app.use(morgan('dev'));
 app.use(router);
 

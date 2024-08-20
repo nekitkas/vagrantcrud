@@ -9,7 +9,7 @@ COPY package.json tsconfig.json ./
 
 RUN npm install
 
-COPY config.ts proxy.ts rabbitPublisher.ts routes.ts server.ts ./
+COPY config.ts proxy.ts rabbitPublisher.ts routes.ts server.ts swagger.ts swagger_output.json ./
 
 RUN npm run build
 
@@ -22,6 +22,7 @@ WORKDIR /gateway-app
 COPY --from=build /gateway-app/dist ./dist
 COPY --from=build /gateway-app/node_modules ./node_modules
 COPY --from=build /gateway-app/package.json ./
+COPY --from=build /gateway-app/swagger_output.json ./
 
 EXPOSE $GATEWAY_APP_PORT
 

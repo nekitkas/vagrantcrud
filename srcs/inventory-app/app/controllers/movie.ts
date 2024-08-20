@@ -4,6 +4,7 @@ import { validationResult } from 'express-validator';
 import { MovieBody, MovieParams, MovieQuery, MovieUpdate } from "../models/movie_interface";
 
 const addMovie = async (req: MovieBody, res: Response) => {
+    // #swagger.tags = ['Movies']
     const result = validationResult(req);
     if (!result.isEmpty()) {
         res.status(400).json({ errors: result.array() });
@@ -22,6 +23,7 @@ const addMovie = async (req: MovieBody, res: Response) => {
 }
 
 const getMovies = async (req: MovieQuery, res: Response) => {
+    // #swagger.tags = ['Movies']
     const result = validationResult(req);
     if (!result.isEmpty()) {
         return res.status(400).json({ errors: result.mapped() });
@@ -47,6 +49,7 @@ const getMovies = async (req: MovieQuery, res: Response) => {
 };
 
 const getMovieById = async (req: MovieParams, res: Response) => {
+    // #swagger.tags = ['Movies']
     const result = validationResult(req);
     if (!result.isEmpty()) {
         res.status(400).json({ errors: result.array() });
@@ -65,11 +68,13 @@ const getMovieById = async (req: MovieParams, res: Response) => {
 }
 
 const deleteAllMovies = async (req: Request, res: Response) => {
+    // #swagger.tags = ['Movies']
     await Movie.destroy({ where: {} });
     res.json({ message: 'All movies deleted' });
 }
 
 const deleteMovieById = async (req: MovieParams, res: Response) => {
+    // #swagger.tags = ['Movies']
     const result = validationResult(req);
     if (!result.isEmpty()) {
         res.status(400).json({ errors: result.array() });
@@ -87,6 +92,7 @@ const deleteMovieById = async (req: MovieParams, res: Response) => {
 }
 
 const updateMovie = async (req: MovieUpdate, res: Response) => {
+    // #swagger.tags = ['Movies']
     const result = validationResult(req);
     if (!result.isEmpty()) {
         res.status(400).json({ errors: result.array() });
