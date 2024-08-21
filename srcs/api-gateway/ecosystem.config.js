@@ -11,7 +11,7 @@ module.exports = {
       out_file: '/logs/api-gateway-out.log',
       error_file: '/logs/api-gateway-error.log',
       env: {
-        NODE_ENV: 'production',
+        NODE_ENV: 'development',
         API_GATEWAY_PORT: process.env.API_GATEWAY_PORT,
         INVENTORY_APP_PORT: process.env.INVENTORY_APP_PORT,
         INVENTORY_APP_HOST: process.env.INVENTORY_APP_HOST,
